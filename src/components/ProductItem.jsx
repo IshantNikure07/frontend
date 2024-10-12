@@ -2,7 +2,6 @@ import React from 'react'
 
 
 
-
 const ProductItem = ({ id, price, name, img ,currency }) => {
 
 

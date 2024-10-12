@@ -18,7 +18,7 @@ const RelatedProducts = ({category , subcategory}) => {
 
        },[products])
 
- console.log(related)
+
   return (
     < >
     

@@ -8,7 +8,7 @@ import RelatedProducts from '../components/RelatedProducts';
 const Product = () => {
   const [productdata , setProductdata] = useState(false);
   const [size , setSize] = useState('')
-  const {products , currency} = useContext(ShopContext)
+  const {products , currency , addToCart} = useContext(ShopContext)
   const {productId} = useParams()
   const [similarproduct , setSimilarproduct] = useState([])
 
@@ -17,10 +17,7 @@ const Product = () => {
     products.map((item)=>{
       if (item._id === productId){
         setProductdata(item)
-        setSize(item.sizes)
-        
         return null}
-      
     })
   }
  
@@ -60,7 +57,7 @@ const Product = () => {
 
                 {/* rate */}
                 <div className=' text-xl'>
-                  <p className='text-green-800'>{currency} {productdata.price}</p>
+                  <p className='text-green-500'>{currency} {productdata.price}</p>
                 </div>
               
               {/* sizes */}
@@ -74,7 +71,7 @@ const Product = () => {
                 </div>
 
                 <div>
-                <button className='px-6 py-2 bg-teal-600 text-black border  flex justify-center items-center rounded-md'>
+                <button onClick={()=>addToCart(productdata._id , size)} className='px-6 py-2 bg-teal-600 text-black border  flex justify-center items-center rounded-md'>
                   Add to cart
                 </button>
                 </div>

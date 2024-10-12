@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext, useState , } from 'react'
+import { Link, NavLink , useNavigate} from 'react-router-dom'
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 import { assets } from '../assets/frontend_assets/assets'
 import { ShopContext } from '../context/ShopContext'
@@ -7,7 +7,8 @@ import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false)
-  const {showSearch , setShowsearch} = useContext(ShopContext)
+  const {showSearch , setShowsearch ,getCardCount} = useContext(ShopContext)
+  const navigate = useNavigate()
 
   return (
     <div className='flex items-center w-full justify-between py-5 font-medium border-b pb-5'>
@@ -15,19 +16,19 @@ const Navbar = () => {
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
         <NavLink to='/' className='group flex flex-col items-center gap-1'>
           <p className=''>HOME</p>
-          <hr className='group-hover:block border-none w-2/4  bg-gray-900 h-[1.5px] hidden ' ></hr>
+          <hr className='group-hover:opacity-100 border-none w-2/4  bg-gray-900 h-[1.5px] opacity-0 ' ></hr>
         </NavLink>
-        <NavLink to='/Collection' className='group flex flex-col items-center gap-1'>
+        <NavLink to='/collection' className='group flex flex-col items-center gap-1'>
           <p className=' '>COLLECTION</p>
-          <hr className='group-hover:block border-none w-2/4  bg-gray-900 h-[1.5px] hidden ' ></hr>
+          <hr className='group-hover:opacity-100 border-none w-2/4  bg-gray-900 h-[1.5px] opacity-0' ></hr>
         </NavLink>
         <NavLink to='/contact' className='group flex flex-col items-center gap-1'>
-          <p className=' '>CONTACT</p>
-          <hr className='group-hover:block border-none w-2/4  bg-gray-900 h-[1.5px] hidden ' ></hr>
+          <p className=' '>CONTACT US</p>
+          <hr className='group-hover:opacity-100 border-none w-2/4  bg-gray-900 h-[1.5px] opacity-0' ></hr>
         </NavLink>
-        <NavLink to='/servises' className='group flex flex-col items-center gap-1'>
-          <p className=' '>SERVISES</p>
-          <hr className='group-hover:block border-none w-2/4  bg-gray-900 h-[1.5px] hidden ' ></hr>
+        <NavLink to='/about' className='group flex flex-col items-center gap-1'>
+          <p className=' '>ABOUT US</p>
+          <hr className='group-hover:opacity-100 border-none w-2/4  bg-gray-900 h-[1.5px] opacity-0' ></hr>
         </NavLink>
       </ul>
       <div className='flex items-center gap-4'>
@@ -38,7 +39,7 @@ const Navbar = () => {
           <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10'>
             <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
               <p className='cursor-pointer hover:text-black'>My Profile</p>
-              <p className='cursor-pointer hover:text-black'>Orders</p>
+              <p onClick={()=>navigate("/orders")} className='cursor-pointer hover:text-black'>Orders</p>
               <p className='cursor-pointer hover:text-black'>Logout</p>
             </div>
           </div>
@@ -46,7 +47,7 @@ const Navbar = () => {
 
         <Link to="/cart" className='relative'>
           <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white rounded-full text-sm'>3</p>
+          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white rounded-full text-sm'>{getCardCount()}</p>
         </Link>
           <img onClick={() => setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
 

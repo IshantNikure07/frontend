@@ -11,24 +11,29 @@ import PlaceOrder from './pages/PlaceOrder'
 import Product from './pages/Product'
 import Navbar from './components/Navbar'
 import Searchbar from './components/Searchbar'
+import {ToastContainer , toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Footer from './components/Footer'
 
 
 const App = () => {
   return (
     <div className='px-4 sm:px[5vw] md:px-[7vw] lg:[9vw] '>
+      <ToastContainer/>
         <Navbar/>
         <Searchbar/>
         <Routes>
           <Route path='/' element={<Home/>} />
-         < Route path='/About' element={<About/>}/>
-         < Route path='/Cart' element={<Cart/>}/>
-         < Route path='/Collection' element={<Collection/>}/>
-         < Route path='/Contact' element={<Contact/>}/>
-         < Route path='/Login' element={<Login/>}/>
-         < Route path='/Orders' element={<Orders/>}/>
-         < Route path='/PlaceOrder' element={<PlaceOrder/>}/>
-         < Route path='/Product/:productId' element={<Product/>}/>
+         < Route path='/about' element={<About/>}/>
+         < Route path='/cart' element={<Cart/>}/>
+         < Route path='/collection' element={<Collection/>}/>
+         < Route path='/contact' element={<Contact/>}/>
+         < Route path='/login' element={<Login/>}/>
+         < Route path='/orders' element={<Orders/>}/>
+         < Route path='/placeorder' element={<PlaceOrder/>}/>
+         < Route path='/product/:productId' element={<Product/>}/>
         </Routes>
+        <Footer/>
     </div>
 
    

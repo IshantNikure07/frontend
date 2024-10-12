@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a.active hr{
-    display: block;
+   opacity:0.9;
 }
 
 
