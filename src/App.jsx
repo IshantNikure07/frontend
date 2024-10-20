@@ -34,6 +34,7 @@ const App = () => {
          < Route path='/product/:productId' element={<Product/>}/>
         </Routes>
         <Footer/>
+       
     </div>
 
    

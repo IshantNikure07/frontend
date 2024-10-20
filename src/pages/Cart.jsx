@@ -8,10 +8,11 @@ import EmptyCart from '../components/EmptyCart'
 
 const Cart = () => {
   const [myCartData , setMyCartData]= useState([])
-  const {products , cartItems ,currency , updateCart} = useContext(ShopContext)
+  const {products , cartItems ,currency , updateQuantity ,updateCart, navigate} = useContext(ShopContext)
 
   useEffect(()=>{
-   const tempData = []
+    if (products.length > 0) {
+      const tempData = []
     for(const items in cartItems ){
             for(const item in cartItems[items]){
                if (cartItems[items][item] > 0){
@@ -22,8 +23,10 @@ const Cart = () => {
                    })
                }
             }}
-            setMyCartData(tempData)
-  },[cartItems])
+            setMyCartData(tempData)}
+   
+   
+  },[cartItems , products])
 
 
   return (
@@ -37,7 +40,7 @@ const Cart = () => {
           const productData = products.find((product)=>item._id === product._id);
 
           return( 
-            <div key={index} className='border-b-2 m-3 w-full h-28 flex justify-between'>
+            <div key={index} className='border-b-2 m-3 w-full h-28 flex justify-between '>
                 <div className='w-38 h-full flex gap-4'>
                     <img className='m-1 w-26 h- ' src={productData.image} alt="" />
                     <div className='flex flex-col gap-3'>
@@ -48,11 +51,10 @@ const Cart = () => {
                           </div>
                         </div>
               </div>
-              <div className='flex flex-col justify-center items-center max-w-10 sm:max-w-20'>        
-                <h1 className=' p-1 sm:px-2'  >{item.quantity}</h1>
-              </div>
+                <input onChange={(e)=> e.target.value === '' || e.target.value === '0' ? null : updateQuantity(item._id ,item.size , Number(e.target.value))} className='border max-w-1 sm:max-w-20 p-1 h-7 sm:px-0 ' type='number' min={1} defaultValue={item.quantity}/>
+              
               <div className='flex justify-center items-start sm:items-center'>
-              <img onClick={()=>updateCart(item._id,item.size,0)} className='w-5  h-5 ' src={assets.bin_icon} alt="" />
+              <img onClick={()=>updateCart( item._id,item.size, 0)} className='w-5  h-5 ' src={assets.bin_icon} alt="" />
 
               </div>
                 
@@ -66,16 +68,21 @@ const Cart = () => {
       <div className='w-full sm:m-2  relative'>
         <div>
 
-        { myCartData.length > 0 ? <div >
-          <div className='flex justify-end '>
+        { myCartData.length > 0 ? <div className='space-y-5' >
+          <div className='flex justify-end  '>
             <CartTotal/>
           </div>
           
-          <div className='flex justify-center  items-center absolute right-0 bottom-[-15rem]'>
-              <div  className='bg-black rounded-md text-white py-1 px-3 flex justify-center w-28'>
-                    <a href='/placeorder' className='' >Proceed</a>
-              </div>
-          </div>
+           {/* Proceed Button */}
+           <div className='flex justify-center items-center absolute right-0 bottom-[-13rem] sm:bottom-[-14rem]'>
+              <button 
+                onClick={() => navigate('/placeorder')} 
+                className='bg-black rounded-md text-white py-1 px-3 w-28 flex justify-center'
+              >
+                Proceed
+              </button>
+            </div>
+
           </div> : <div className='w-full '><EmptyCart/></div> }
         </div>
           

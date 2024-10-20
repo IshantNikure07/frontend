@@ -7,16 +7,16 @@ const ProductItem = ({ id, price, name, img ,currency }) => {
 
   return (
 <div className="bg-white">
-      <div className="mx-auto  px-2 py-8 sm:px-4 sm:py-4  lg:px-4">
+      <div className="mx-auto  px-2 py-8 sm:p-0 sm:mx-3 ">
 
         <div className="mt-6  gap-x-6 gap-y-10  xl:gap-x-4">
           
             <div className="group relative">
                   <div className="  overflow-hidden rounded-md bg-gray-200  group-hover:scale-105 "><img alt="" src={img} className=" object-cover object-center "/></div>
                   <div className="mt-4 flex justify-between gap-y-3">
-                      <div className='flex flex-col'>
+                      <div className='flex flex-col w-[80%] '>
                         <h3 className="text-sm text-gray-700"><a href={`/product/${id}`}><span aria-hidden="true" className="absolute inset-0" />{name}</a> </h3>
-                        <p className="mt-1 text-sm text-gray-500">{id}</p>
+                        <p className="mt-1 text-sm text-gray-500 opacity-0">{id}</p>
                       </div>
                   <p className="text-sm font-medium text-green-600">{currency}{price}</p>
                   </div>
